@@ -118,10 +118,12 @@ with advanced:
     fig20 = px.histogram(filtered_df, x="TrainingTimesLastYear", color="Attrition", barmode="group")
     st.plotly_chart(fig20, use_container_width=True)
 
-filtered_df = df[
-    (df['Department'].isin(departments)) &
-    (df['Gender'].isin(genders)) &
-    (df['JobRole'].isin(job_roles)) &
-    (df["Age"].between(age_range[0], age_range[1]))
-]
-
+# Age Range Slider in Sidebar
+age_min = int(df["Age"].min())
+age_max = int(df["Age"].max())
+age_range = st.sidebar.slider(
+    "Select Age Range",
+    min_value=age_min,
+    max_value=age_max,
+    value=(age_min, age_max)
+)
