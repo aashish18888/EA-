@@ -117,3 +117,11 @@ with advanced:
     st.subheader("20. Training Times Last Year vs Attrition")
     fig20 = px.histogram(filtered_df, x="TrainingTimesLastYear", color="Attrition", barmode="group")
     st.plotly_chart(fig20, use_container_width=True)
+
+filtered_df = df[
+    (df['Department'].isin(departments)) &
+    (df['Gender'].isin(genders)) &
+    (df['JobRole'].isin(job_roles)) &
+    (df["Age"].between(age_range[0], age_range[1]))
+]
+
